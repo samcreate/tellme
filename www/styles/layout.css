@@ -1,0 +1,186 @@
+/*
+Global
+*/
+/* line 4, ../sass/layout.scss */
+.ir {
+  display: block;
+  text-indent: -999em;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  text-align: left;
+  direction: ltr;
+}
+
+/* line 5, ../sass/layout.scss */
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+/* line 6, ../sass/layout.scss */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/* line 8, ../sass/layout.scss */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+/* line 9, ../sass/layout.scss */
+.invisible {
+  visibility: hidden;
+}
+
+/* line 10, ../sass/layout.scss */
+.clearfix:before, .clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+/* line 11, ../sass/layout.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/* line 12, ../sass/layout.scss */
+.clearfix {
+  zoom: 1;
+}
+
+/* line 13, ../sass/layout.scss */
+a {
+  color: black;
+}
+
+/*
+Body
+*/
+/*
+PageWrapper
+*/
+/*
+Header
+*/
+/*
+Content MainContent
+*/
+/*
+Footer
+*/
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  /* Styles */
+}
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) {
+  /* Styles */
+}
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 320px) {
+  /* Styles */
+}
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* Styles */
+}
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  /* Styles */
+}
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* Styles */
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  /* Styles */
+}
+/* Large screens ----------- */
+@media only screen and (min-width: 1824px) {
+  /* Styles */
+}
+/* iPhone 4 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  /* Styles */
+}
+/*
+For Printing support
+*/
+@media print {
+  /* line 116, ../sass/layout.scss */
+  * {
+    background: transparent !important;
+    color: black !important;
+    text-shadow: none !important;
+    filter: none !important;
+    -ms-filter: none !important;
+  }
+
+  /* line 118, ../sass/layout.scss */
+  a, a:visited {
+    color: #444 !important;
+    text-decoration: underline;
+  }
+
+  /* line 119, ../sass/layout.scss */
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  /* line 120, ../sass/layout.scss */
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  /* line 121, ../sass/layout.scss */
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+    content: "";
+  }
+
+  /* line 122, ../sass/layout.scss */
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /* line 123, ../sass/layout.scss */
+  thead {
+    display: table-header-group;
+  }
+
+  /* line 124, ../sass/layout.scss */
+  tr, img {
+    page-break-inside: avoid;
+  }
+
+  @page {
+    margin: 0.5cm;
+}
+
+  /* line 126, ../sass/layout.scss */
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* line 127, ../sass/layout.scss */
+  h2, h3 {
+    page-break-after: avoid;
+  }
+}
