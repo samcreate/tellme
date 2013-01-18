@@ -9,6 +9,11 @@ tellme.app = function(){
 	// = Private variables (example: var _foo = bar; ) =
 	// =================================================
 	var _d=document;
+	var _div = document.createElement("div");
+	var _overlay = document.createElement("div");
+	var _cur_el;
+	var _def;
+	var _pause = false;
 
 	// =================================================
 	// = public functions                              =
@@ -38,20 +43,66 @@ tellme.app = function(){
 	// ================================================
 
 	function _run(){
-
-		this.onmousemove = function(e){
-			debug.log("ELEMENT: ", e.target);
-		}
-		return;
-		var _objs = _d.getElementsByTagName("*");
-
-		for (var i = 0; i < _objs.length; i++) {
-
-			new HoverElement(_objs[i]);
-	
-		}
+		_overlay.id = "zzTopOverlay";
+		_overlay.style.width = window.innerWidth+"px";
+		_overlay.style.height = window.innerHeight+"px";
+		_overlay.style.backgroundColor = "black";
+		_overlay.style.opacity = "0.7";
+		_overlay.style.position = "fixed";
+		_overlay.style.zIndex = "99999998";
+		_overlay.style.top = "0px";
+		_overlay.style.left = "0px";
+		_div.id = "zzTopHighlighter";
+		_d.body.appendChild(_div);
+		_d.body.onmousemove = function(e){
+			
+			
+			if(e.target != _d.body && e.target.id != "zzTopHighlighter" && _pause !== true){
+				_cur_el = e.target;
+				_def = _get_TOP_LEFT(_cur_el);
+				_highlight( _cur_el, _def);
+			}
+		
+		};
+		_d.body.onclick = function(e){
+			_div.style.display = "none";
+			_pause = true;
+			var _clone = _cur_el.cloneNode(true);
+			_clone.style.position = "absolute";
+			_clone.style.border = "1px solid blue";
+			_clone.style.top = _def.y+"px";
+			_clone.style.left = _def.x+"px";
+			_clone.style.boxShadow = "0px 0px 15px 5px rgba(50, 176, 203, .75)";
+			_clone.style.zIndex = "99999999";
+			_clone.style.background = "white";
+			_clone.style.width = _cur_el.offsetWidth;
+			_clone.style.height = _cur_el.offsetWidth;
+			_cur_el.parentNode.appendChild(_clone);
+			_d.body.appendChild(_overlay);
+			debug.log(_cur_el.outerHTML);
+		};
+		
 
 	}
+
+	function _get_TOP_LEFT(obj) {
+		var left, top, h, w;
+		w = obj.offsetWidth;
+		h = obj.offsetHeight;
+		left = top = 0;
+		if (obj.offsetParent) {
+			do {
+				left += obj.offsetLeft;
+				top  += obj.offsetTop;
+			} while (obj = obj.offsetParent);
+		}
+		return {
+			x : left,
+			y : top,
+			width : w,
+			height: h
+		};
+	};
 
 	function _addPlugin(p_src, p_callback) {
 
@@ -71,95 +122,25 @@ tellme.app = function(){
 		_d.getElementsByTagName("head")[0].appendChild(script);
 
 	}
+
+	function _highlight(p_obj, p_def){
+
+		var def = p_def;
+		_div.style.display = "block";
+		_div.style.width = def.width+"px";
+		_div.style.height = def.height+"px";
+		_div.style.background = "#32b0cb";
+		_div.style.position="absolute";
+		_div.style.top = def.y+"px";
+		_div.style.left = def.x+"px";
+		_div.style.opacity = "0.6";
+
+		
+	};
 	
 }();
 
 
-
-(function(window) {
-
-	HoverElement = function(p_el){
-
-		var _temp = this.extend(p_el, this);
-		
-		_temp.onmouseover = this.mouseover;
-		_temp.onmouseout = this.mouseout;
-		_temp.onclick = this.mouseclick;
-
-		return _temp;
-	};
-
-	var _pt = HoverElement.prototype;
-
-	_pt.mouseover = function(e){
-		e.stopPropagation();
-		this._oldbgc = this.style.backgroundColor || this._oldbgc;
-		debug.log("COLOR: ",this._oldbgc);
-		this.style.backgroundColor = "#FDFF47";
-		//this.highlight();
-	};
-
-	_pt.mouseout = function(e){
-		e.stopPropagation();
-		this.style.backgroundColor = this._oldbgc || "";
-		this._removeElement();
-		
-		debug.log("remove!: ",this.div);
-	};
-
-	_pt.mouseclick = function(e){
-		e.stopPropagation();
-			e.preventDefault();
-			debug.log("Click");
-			debug.log(this.outerHTML);
-	};
-
-	_pt.highlight = function(){
-
-		var def = this._get_TOP_LEFT();
-		this.div = document.createElement("div") || this.div;
-		this.div.style.width = def.width+"px";
-		this.div.style.height = def.height+"px";
-		this.div.style.background = "red";
-		this.div.style.position="absolute";
-		this.div.style.top = def.y+"px";
-		this.div.style.left = def.x+"px";
-
-		document.body.appendChild(this.div);
-	};
-
-	_pt.extend = function(p_el, p_opt){
-		for(var name in p_opt) {
-			p_el[name] = p_opt[name];
-		}
-		return p_el;
-	};
-
-
-	_pt._get_TOP_LEFT = function () {
-		var left, top, obj = this;
-		left = top = 0;
-		if (obj.offsetParent) {
-			do {
-				left += obj.offsetLeft;
-				top  += obj.offsetTop;
-			} while (obj = obj.offsetParent);
-		}
-		return {
-			x : left,
-			y : top,
-			width : this.offsetWidth,
-			height: this.offsetHeight
-		};
-	};
-
-	_pt._removeElement = function(){
-		this.div.parentNode.removeChild(this.div);
-	};
-
-	window.HoverElement = HoverElement;
-
-}(window));
 
 
 tellme.app.init();
