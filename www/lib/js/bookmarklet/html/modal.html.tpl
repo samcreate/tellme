@@ -4,8 +4,7 @@
     <h3 id="myModalLabel">{{title}}</h3>
   </div>
   <div class="modal-body">
-    <div class="img-holder"> <img src="{{src}}" alt="thumbnail"><br>  
-   
+    <div class="img-holder"> <img src="{{src}}" alt="thumbnail" class="img-polaroid"></div>
     <p>{{body}}</p>
   </div>
   <div class="modal-footer">

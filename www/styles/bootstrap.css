@@ -10,8 +10,8 @@
 
 .zzTop, .zzTop *{width:auto;}
 
-.zzTop .img-holder{width:200px; height: 200px; overflow: hidden; border: 1px solid gray;}
-.zzTop .img-holder img{ height: 200px}
+.zzTop .img-holder{width:200px; height: 200px; overflow: hidden; border: 1px solid #ccc;}
+
 
 .clearfix {
   *zoom: 1;
