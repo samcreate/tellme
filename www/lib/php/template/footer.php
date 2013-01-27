@@ -28,6 +28,7 @@
 	<script src="/lib/js/master.js" type="text/javascript" charset="utf-8"></script>	
 	<script src="/lib/js/main.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/lib/js/homePage.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/js/api.js" type="text/javascript" charset="utf-8"></script>
 	<!-- END_DEV: javascript -->
 	<?php	
 	} 

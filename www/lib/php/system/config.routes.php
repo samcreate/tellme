@@ -26,4 +26,8 @@ Router::add('#^/regex/(test1|test2|test3)/$#', DIR_CTRL.'/regex.php', Router::RO
  * Router::add('#/news/(archive|latest)/#', DIR_CTRL.'news/${1}.php', Router::ROUTE_PCRE);
  *      /news/archive/ goes to news/archive.php
  */
+ // Router::add('/api', DIR_CTRL.'/api.php');
+ // Router::add('#^/api/[^/]+$#', DIR_CTRL.'/api.php', Router::ROUTE_PCRE);
+
+ Router::add("#^/api/.*$#", DIR_CTRL.'/api.php', Router::ROUTE_PCRE);
  ?>
